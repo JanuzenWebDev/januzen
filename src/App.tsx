@@ -719,6 +719,7 @@ export default function App() {
           {nav.page === "medicals" && (
             <ShopView
               division="medicals"
+              initialSearch={nav.params?.search}
               onNavigate={handleNavigate}
               onAddToBag={handleAddToBag}
               wishlistProductIds={wishlistProductIds}
@@ -729,6 +730,7 @@ export default function App() {
           {nav.page === "stationery" && (
             <ShopView
               division="stationery"
+              initialSearch={nav.params?.search}
               onNavigate={handleNavigate}
               onAddToBag={handleAddToBag}
               wishlistProductIds={wishlistProductIds}
@@ -739,6 +741,7 @@ export default function App() {
           {(nav.page === "levra" || nav.page === "zenora") && (
             <ShopView
               division="levra"
+              initialSearch={nav.params?.search}
               onNavigate={handleNavigate}
               onAddToBag={handleAddToBag}
               wishlistProductIds={wishlistProductIds}

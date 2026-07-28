@@ -7,6 +7,7 @@ import ImageWithLoader from "./ImageWithLoader";
 
 interface ShopViewProps {
   division: "medicals" | "stationery" | "zenora" | "levra";
+  initialSearch?: string;
   onNavigate: (view: string, params?: Record<string, any>) => void;
   onAddToBag: (product: Product) => void;
   wishlistProductIds?: string[];
@@ -15,6 +16,7 @@ interface ShopViewProps {
 
 export default function ShopView({ 
   division, 
+  initialSearch,
   onNavigate, 
   onAddToBag, 
   wishlistProductIds = [], 
@@ -141,12 +143,19 @@ export default function ShopView({
     }
     loadMeta();
     setSelectedCategory("");
-    setSearch("");
+    setSearch(initialSearch || "");
     setPriceMin("");
     setPriceMax("");
     setSort("");
     setPage(1);
-  }, [division]);
+  }, [division, initialSearch]);
+
+  React.useEffect(() => {
+    if (initialSearch !== undefined) {
+      setSearch(initialSearch);
+      setPage(1);
+    }
+  }, [initialSearch]);
 
   // Load products when filters change
   const fetchProducts = React.useCallback(async () => {
