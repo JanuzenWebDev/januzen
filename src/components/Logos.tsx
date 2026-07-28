@@ -41,19 +41,32 @@ export function JaStationeryLogo({ className = "", size = 40 }: LogoProps) {
   );
 }
 
-// ✨ ZENORA Everyday Essentials Logo
-import { Sparkles } from "lucide-react";
+// ✨ LEVRA Everyday Essentials Logo
+export function LevraLogo({ className = "", size = 40 }: LogoProps) {
+  const [imgError, setImgError] = React.useState(false);
+  const sizeNum = typeof size === "number" ? size : parseInt(String(size), 10) || 40;
 
-export function ZenoraLogo({ className = "", size = 40 }: LogoProps) {
-  const sizeNum = typeof size === "number" ? size : parseInt(size, 10) || 40;
+  if (imgError) {
+    return (
+      <div 
+        className={`inline-flex items-center justify-center rounded-lg bg-gradient-to-tr from-purple-600 to-indigo-600 text-white font-bold font-serif ${className}`}
+        style={{ width: sizeNum, height: sizeNum, fontSize: Math.max(12, sizeNum * 0.4) }}
+      >
+        L
+      </div>
+    );
+  }
+
   return (
-    <div 
-      className={`inline-flex items-center justify-center rounded-lg bg-gradient-to-tr from-purple-500 to-indigo-500 text-white ${className}`}
-      style={{ width: sizeNum, height: sizeNum }}
-    >
-      <Sparkles size={sizeNum * 0.6} />
-    </div>
+    <img
+      src="/levra.png"
+      alt="Levra Logo"
+      onError={() => setImgError(true)}
+      className={`inline-block object-contain transition-transform duration-300 ${className}`}
+      style={{ width: size, height: size }}
+    />
   );
 }
 
-
+// Backwards compatibility alias
+export const ZenoraLogo = LevraLogo;

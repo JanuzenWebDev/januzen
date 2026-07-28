@@ -5,7 +5,7 @@ import {
   Activity, BookOpen, Quote, HelpCircle, Star, ArrowUpRight, Heart, Share2, Check
 } from "lucide-react";
 import { Product } from "../types";
-import { JanuzenLogo, NuthanMedicalsLogo, JaStationeryLogo, ZenoraLogo } from "./Logos";
+import { JanuzenLogo, NuthanMedicalsLogo, JaStationeryLogo, LevraLogo, ZenoraLogo } from "./Logos";
 import { ProductCardSkeleton, TestimonialSkeleton } from "./SkeletonLoader";
 import ImageWithLoader from "./ImageWithLoader";
 
@@ -14,7 +14,7 @@ interface HomeViewProps {
   featuredProducts: Product[];
   onAddToBag: (product: Product) => void;
   wishlistProductIds?: string[];
-  onToggleWishlist?: (productId: string, productType: 'medicals' | 'stationery' | 'zenora') => void;
+  onToggleWishlist?: (productId: string, productType: 'medicals' | 'stationery' | 'zenora' | 'levra') => void;
 }
 
 export default function HomeView({ 
@@ -32,7 +32,7 @@ export default function HomeView({
 
   const communityVoices = [
     {
-      text: "The seamless transition to the Zenora sector for household and home essentials is exceptional. We get top-tier cleaning agents and kitchen essentials delivered on one clean corporate account.",
+      text: "The seamless transition to the Levra sector for household and home essentials is exceptional. We get top-tier cleaning agents and kitchen essentials delivered on one clean corporate account.",
       author: "Nikhil",
       role: "Operations Director",
       avatar: "NK",
@@ -53,7 +53,7 @@ export default function HomeView({
       color: "bg-amber-50 dark:bg-amber-950/45 border-amber-200 dark:border-amber-900/60 text-amber-800 dark:text-amber-300"
     },
     {
-      text: "Everyday home essentials from Zenora have streamlined our office pantry and hygiene supplies. From bio-friendly dishwashers to everyday utilities, the delivery is consistently flawless.",
+      text: "Everyday home essentials from Levra have streamlined our office pantry and hygiene supplies. From bio-friendly dishwashers to everyday utilities, the delivery is consistently flawless.",
       author: "Riya",
       role: "Procurement Manager",
       avatar: "RY",
@@ -74,7 +74,7 @@ export default function HomeView({
       color: "bg-yellow-50 dark:bg-yellow-950/45 border-yellow-200 dark:border-yellow-900/60 text-yellow-800 dark:text-yellow-300"
     },
     {
-      text: "Zenora's kitchen and daily household items have outstanding durability. Combining this new sector with healthcare formulations makes Januzen Global our true single-source enterprise partner.",
+      text: "Levra's kitchen and daily household items have outstanding durability. Combining this new sector with healthcare formulations makes Januzen Global our true single-source enterprise partner.",
       author: "Deepak",
       role: "Facilities Management Head",
       avatar: "DP",
@@ -402,10 +402,10 @@ export default function HomeView({
                 <ArrowUpRight className="h-4 w-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </button>
               <button
-                onClick={() => onNavigate("zenora")}
+                onClick={() => onNavigate("levra")}
                 className="group flex items-center gap-2.5 bg-transparent border border-white/20 hover:border-indigo-400 hover:text-indigo-400 text-white font-mono font-bold uppercase tracking-wider px-7 py-4 rounded-lg transition-all text-xs cursor-pointer"
               >
-                Explore Zenora
+                Explore Levra
                 <ArrowUpRight className="h-4 w-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </button>
             </div>
@@ -484,15 +484,15 @@ export default function HomeView({
 
                 {/* Division 3 Line */}
                 <div 
-                  onClick={() => onNavigate("zenora")}
+                  onClick={() => onNavigate("levra")}
                   className="flex items-center gap-4 p-3 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 hover:bg-indigo-950/20 transition-all group cursor-pointer"
                 >
                   <div className="h-10 w-10 text-indigo-400 bg-indigo-950/40 border border-indigo-500/10 rounded-lg flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                    <ZenoraLogo size={28} />
+                    <LevraLogo size={28} />
                   </div>
                   <div className="flex-grow">
                     <h4 className="text-sm font-bold text-white flex items-center gap-1.5 group-hover:text-indigo-300">
-                      Zenora Essentials
+                      Levra Essentials
                       <ArrowRight className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                     </h4>
                     <p className="text-[11px] text-gray-300 mt-0.5 leading-relaxed font-serif">Everyday home, cleaning, kitchen & personal-use necessities.</p>
@@ -642,7 +642,7 @@ export default function HomeView({
             </div>
           </div>
 
-          {/* Card 3: Zenora */}
+          {/* Card 3: Levra */}
           <div 
             className="gsap-division-card bg-card-theme border-2 border-indigo-500/20 rounded-2xl overflow-hidden shadow-md transition-all duration-300 flex flex-col justify-between group relative"
             onMouseEnter={handleCard3Enter}
@@ -653,7 +653,7 @@ export default function HomeView({
             <div className="p-8 space-y-6">
               <div className="flex justify-between items-start">
                 <div className="gsap-division-logo inline-flex h-16 w-16 text-indigo-600 bg-indigo-50 rounded-2xl items-center justify-center p-2.5 border border-indigo-100 shadow-sm transition-all duration-300">
-                  <ZenoraLogo size={56} />
+                  <LevraLogo size={56} />
                 </div>
                 <span className="gsap-division-tag text-[9px] font-mono font-bold uppercase tracking-widest text-[#6366F1] bg-[#6366F1]/10 border border-[#6366F1]/20 px-2.5 py-1 rounded-full">
                   Everyday Quality
@@ -662,7 +662,7 @@ export default function HomeView({
 
               <div className="space-y-2">
                 <span className="text-[10px] font-mono tracking-widest text-indigo-600 uppercase font-black block">Home & Household Essentials</span>
-                <h3 className="font-serif text-2xl font-regular tracking-tight text-slate-900 transition-colors">Zenora</h3>
+                <h3 className="font-serif text-2xl font-regular tracking-tight text-slate-900 transition-colors">Levra</h3>
               </div>
 
               <p className="text-gray-500 text-sm leading-relaxed font-serif">
@@ -680,10 +680,10 @@ export default function HomeView({
 
             <div className="px-8 pb-8">
               <button
-                onClick={() => onNavigate("zenora")}
+                onClick={() => onNavigate("levra")}
                 className="w-full py-4 px-6 bg-[#6366F1] hover:bg-[#4F46E5] text-white font-mono text-xs font-bold uppercase tracking-wider rounded-lg flex items-center justify-center gap-3 transition-colors cursor-pointer shadow-md hover:shadow-indigo-500/25 active:scale-98"
               >
-                Enter Zenora Division
+                Enter Levra Division
                 <ArrowRight className="gsap-division-arrow h-4 w-4" />
               </button>
             </div>

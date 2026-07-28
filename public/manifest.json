@@ -1,10 +1,15 @@
 {
+  "id": "com.januzen.app",
   "short_name": "Januzen",
-  "name": "Januzen Global",
-  "start_url": "/",
-  "background_color": "#0F172A",
+  "name": "Januzen Global | Apex Care & Desk Essentials",
+  "description": "Certified apex consortium managing Nuthan Medicals, JA Stationery, and Levra home essentials.",
+  "start_url": "/?utm_source=pwa",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0F172A",
   "theme_color": "#0F172A",
+  "categories": ["shopping", "business", "medical", "productivity"],
   "icons": [
     {
       "src": "/favicon.png",
@@ -59,6 +64,29 @@
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Nuthan Medicals",
+      "short_name": "Medicals",
+      "description": "Clinical diagnostics & pharmaceuticals",
+      "url": "/medicals",
+      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "JA Stationery",
+      "short_name": "Stationery",
+      "description": "Fine writing & corporate supplies",
+      "url": "/stationery",
+      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Levra Home",
+      "short_name": "Levra",
+      "description": "Home & daily essentials",
+      "url": "/levra",
+      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
     }
   ]
 }

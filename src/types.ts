@@ -21,7 +21,7 @@ export interface Product {
   description: string;
   price: number;
   category: string;
-  shop: 'medicals' | 'stationery' | 'zenora';
+  shop: 'medicals' | 'stationery' | 'zenora' | 'levra';
   stock: number;
   stockQuantity?: number;
   lowStockThreshold?: number;
@@ -43,7 +43,7 @@ export interface OrderItem {
   price: number;
   quantity: number;
   image: string;
-  shop: 'medicals' | 'stationery' | 'zenora';
+  shop: 'medicals' | 'stationery' | 'zenora' | 'levra';
   selectedOption?: ProductOption;
 }
 
@@ -91,7 +91,7 @@ export interface WishlistItem {
   id: string;
   userId: string;
   productId: string;
-  productType: 'medicals' | 'stationery' | 'zenora';
+  productType: 'medicals' | 'stationery' | 'zenora' | 'levra';
   addedAt: string;
 }
 
@@ -100,7 +100,7 @@ export interface Message {
   name: string;
   email: string;
   subject: string;
-  shop: 'medicals' | 'stationery' | 'zenora' | 'general';
+  shop: 'medicals' | 'stationery' | 'zenora' | 'levra' | 'general';
   message: string;
   isRead: boolean;
   createdAt: string;

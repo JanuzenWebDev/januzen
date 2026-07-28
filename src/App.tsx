@@ -24,6 +24,9 @@ import SideCartDrawer from "./components/SideCartDrawer";
 import Error404View from "./components/Error404View";
 import InvoiceOnlineView from "./components/InvoiceOnlineView";
 import LiveTrackingView from "./components/LiveTrackingView";
+import { usePWAInstall } from "./hooks/usePWAInstall";
+import { PWAInstallModal } from "./components/PWAInstallModal";
+import { PWAInstallBanner } from "./components/PWAInstallBanner";
 const LazyPersistentDeliveryWidget = React.lazy(() => import("./components/PersistentDeliveryWidget"));
 
 interface DeliveryWidgetErrorBoundaryProps {
@@ -66,7 +69,7 @@ const syncServiceWorkerToken = (token: string | null) => {
 };
 
 interface NavState {
-  page: "home" | "medicals" | "stationery" | "zenora" | "product-detail" | "cart" | "checkout" | "about" | "contact" | "login" | "admin" | "orders" | "profile" | "delivery" | "error" | string;
+  page: "home" | "medicals" | "stationery" | "zenora" | "levra" | "product-detail" | "cart" | "checkout" | "about" | "contact" | "login" | "admin" | "orders" | "profile" | "delivery" | "error" | string;
   params: Record<string, any>;
 }
 
@@ -87,6 +90,17 @@ export default function App() {
   const [wishlistProductIds, setWishlistProductIds] = React.useState<string[]>([]);
   const [marquee, setMarquee] = React.useState<string>("");
   const [marqueeSpeed, setMarqueeSpeed] = React.useState<number>(30);
+
+  // PWA Add to Home Screen / Download App Manager
+  const {
+    isInstallable,
+    isInstalled,
+    isIOS,
+    showInstructionsModal,
+    setShowInstructionsModal,
+    promptInstall,
+    hasNativePrompt
+  } = usePWAInstall();
 
   React.useEffect(() => {
     try {
@@ -125,8 +139,8 @@ export default function App() {
       setNav({ page: "medicals", params: {} });
     } else if (shop === "stationery") {
       setNav({ page: "stationery", params: {} });
-    } else if (shop === "zenora") {
-      setNav({ page: "zenora", params: {} });
+    } else if (shop === "zenora" || shop === "levra") {
+      setNav({ page: "levra", params: {} });
     }
   }, []);
 
@@ -151,7 +165,7 @@ export default function App() {
     }
   }, [currentUser]);
 
-  const handleToggleWishlist = async (productId: string, productType: 'medicals' | 'stationery' | 'zenora') => {
+  const handleToggleWishlist = async (productId: string, productType: 'medicals' | 'stationery' | 'zenora' | 'levra') => {
     if (!currentUser) {
       showToastMsg("⚠️ Please log in to edit your wishlist.");
       setNav({ page: "login", params: { redirectAfter: nav.page, redirectParams: nav.params } });
@@ -315,8 +329,8 @@ export default function App() {
           setNav({ page: "medicals" });
         } else if (path.includes("stationery")) {
           setNav({ page: "stationery" });
-        } else if (path.includes("zenora")) {
-          setNav({ page: "zenora" });
+        } else if (path.includes("zenora") || path.includes("levra")) {
+          setNav({ page: "levra" });
         }
       } else if (event.data.type === "PUSH_RECEIVED" && event.data.data) {
         const d = event.data.data;
@@ -392,9 +406,10 @@ export default function App() {
         titleStr = "JA Stationery | Curated Office Calendars, Leather Diaries & Writing Books";
         descContent = "Explore JA Stationery. Luxury leather business diaries, executive academic planners, customized corporate stationery notebooks, and high-caliber stationery items.";
         break;
+      case "levra":
       case "zenora":
-        titleStr = "Zenora Essentials | Everyday Home, Kitchen & Cleaning Essentials by JANUZEN";
-        descContent = "Explore Zenora Essentials. Premium household products, bio-friendly cleaning supplies, kitchen tools, and daily personal-use necessities.";
+        titleStr = "Levra Essentials | Everyday Home, Kitchen & Cleaning Essentials by JANUZEN";
+        descContent = "Explore Levra Essentials. Premium household products, bio-friendly cleaning supplies, kitchen tools, and daily personal-use necessities.";
         break;
       case "product-detail":
         titleStr = "Premium Catalog Item | JANUZEN Global LLP";
@@ -650,6 +665,9 @@ export default function App() {
         theme={theme}
         onThemeChange={handleThemeChange}
         onCartClick={() => setSideCartOpen(true)}
+        onInstallApp={promptInstall}
+        isInstalled={isInstalled}
+        isInstallable={isInstallable}
       />
 
       {/* 🔮 Side-Cart Slider Drawer (GSAP-powered entry and micro-animations) */}
@@ -681,7 +699,7 @@ export default function App() {
         <Suspense fallback={
           <OfficialLoader fullScreen={false} message="Streaming verified partner view modules..." />
         }>
-          {!["home", "medicals", "stationery", "zenora", "product-detail", "cart", "checkout", "about", "contact", "login", "admin", "profile", "orders", "delivery", "invoice", "live-tracking"].includes(nav.page) && (
+          {!["home", "medicals", "stationery", "zenora", "levra", "product-detail", "cart", "checkout", "about", "contact", "login", "admin", "profile", "orders", "delivery", "invoice", "live-tracking"].includes(nav.page) && (
             <Error404View 
               onNavigate={handleNavigate} 
               searchedTerm={(nav.params && nav.params.query) || ""}
@@ -718,9 +736,9 @@ export default function App() {
             />
           )}
 
-          {nav.page === "zenora" && (
+          {(nav.page === "levra" || nav.page === "zenora") && (
             <ShopView
-              division="zenora"
+              division="levra"
               onNavigate={handleNavigate}
               onAddToBag={handleAddToBag}
               wishlistProductIds={wishlistProductIds}
@@ -867,6 +885,22 @@ export default function App() {
           );
         })}
       </div>
+
+      {/* 📱 PWA Add to Home Screen Instructions Modal */}
+      <PWAInstallModal
+        isOpen={showInstructionsModal}
+        onClose={() => setShowInstructionsModal(false)}
+        onTryAutoInstall={promptInstall}
+        hasNativePrompt={hasNativePrompt}
+        isIOS={isIOS}
+      />
+
+      {/* 📱 Floating PWA Download / Add to Home Screen Banner */}
+      <PWAInstallBanner
+        isInstallable={isInstallable}
+        isInstalled={isInstalled}
+        onInstall={promptInstall}
+      />
     </div>
   );
 }

@@ -2,9 +2,9 @@ import React from "react";
 import { useClickOutside } from "../hooks/useClickOutside";
 import { gsap } from "gsap";
 import { safeLocalStorage as localStorage, safeSessionStorage as sessionStorage } from "../utils/storage";
-import { ShoppingBag, User, LogOut, ShieldAlert, Activity, BookOpen, Menu, X, Settings, Palette, Bell } from "lucide-react";
+import { ShoppingBag, User, LogOut, ShieldAlert, Activity, BookOpen, Menu, X, Settings, Palette, Bell, Download, Smartphone } from "lucide-react";
 import { User as UserType } from "../types";
-import { JanuzenLogo, NuthanMedicalsLogo, JaStationeryLogo, ZenoraLogo } from "./Logos";
+import { JanuzenLogo, NuthanMedicalsLogo, JaStationeryLogo, LevraLogo, ZenoraLogo } from "./Logos";
 import { subscribeToPush } from "../lib/push";
 import { NotificationDrawer } from "./NotificationDrawer";
 
@@ -17,9 +17,12 @@ interface NavbarProps {
   theme?: "light" | "dark" | "emerald" | "amber" | "device";
   onThemeChange?: (theme: "light" | "dark" | "emerald" | "amber" | "device") => void;
   onCartClick?: () => void;
+  onInstallApp?: () => void;
+  isInstalled?: boolean;
+  isInstallable?: boolean;
 }
 
-export default function Navbar({ currentView, onNavigate, currentUser, onLogout, cartCount, theme = "light", onThemeChange, onCartClick }: NavbarProps) {
+export default function Navbar({ currentView, onNavigate, currentUser, onLogout, cartCount, theme = "light", onThemeChange, onCartClick, onInstallApp, isInstalled, isInstallable }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [notifications, setNotifications] = React.useState<any[]>([]);
   const [isNotifDrawerOpen, setIsNotifDrawerOpen] = React.useState(false);
@@ -277,7 +280,7 @@ export default function Navbar({ currentView, onNavigate, currentUser, onLogout,
     { label: "Home", view: "home" },
     { label: "Nuthan Medicals", view: "medicals" },
     { label: "JA Stationery", view: "stationery" },
-    { label: "Zenora", view: "zenora" },
+    { label: "Levra", view: "levra" },
     { label: "About", view: "about" },
     { label: "Contact", view: "contact" },
     ...(currentUser?.role === "admin" ? [{ label: "Delivery Portal", view: "delivery" }] : []),
@@ -337,11 +340,11 @@ export default function Navbar({ currentView, onNavigate, currentUser, onLogout,
                 </div>
               </div>
             )}
-            {currentView === "zenora" && (
+            {(currentView === "levra" || currentView === "zenora") && (
               <div className="hidden 2xl:flex items-center gap-2 border-l border-white/20 pl-3 ml-1 animate-fade-in">
-                <ZenoraLogo size={28} />
+                <LevraLogo size={28} />
                 <div className="flex flex-col">
-                  <span className="font-serif text-[11px] font-bold text-[#A5B4FC] uppercase tracking-wider leading-none">Zenora</span>
+                  <span className="font-serif text-[11px] font-bold text-[#A5B4FC] uppercase tracking-wider leading-none">Levra</span>
                   <span className="text-[7px] text-[#A5B4FC]/85 font-mono tracking-widest uppercase">Essentials</span>
                 </div>
               </div>
@@ -440,6 +443,17 @@ export default function Navbar({ currentView, onNavigate, currentUser, onLogout,
                 <span className="hidden xl:inline text-[10px] 2xl:text-xs">Orders</span>
               </button>
             )}
+
+            {/* Download App / Add to Home Screen PWA Button */}
+            <button
+              onClick={onInstallApp}
+              className="flex items-center gap-1.5 bg-gradient-to-r from-amber-500/20 via-amber-600/30 to-amber-500/20 hover:from-amber-500/30 hover:to-amber-600/40 text-amber-300 rounded font-mono font-bold tracking-wide transition-all border border-amber-500/40 cursor-pointer px-1.5 py-1 text-[10px] xl:px-2.5 xl:py-1.5 xl:text-xs shadow-sm hover:shadow-amber-500/20"
+              title="Download App / Add to Home Screen"
+            >
+              <Download className="h-3.5 w-3.5 text-amber-400 shrink-0 animate-pulse" />
+              <span className="hidden xl:inline">Install App</span>
+              <span className="inline xl:hidden">App</span>
+            </button>
 
             {/* Theme Thematic Modes dropdown selection */}
             <div className="relative group">
@@ -651,6 +665,26 @@ export default function Navbar({ currentView, onNavigate, currentUser, onLogout,
                 </button>
               </div>
             )}
+
+            {/* Mobile PWA Download / Add to Home Screen */}
+            <div className="pt-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onInstallApp?.();
+                }}
+                className="w-full text-left flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-bold cursor-pointer bg-gradient-to-r from-amber-500/20 via-amber-600/20 to-amber-500/10 border border-amber-500/40 text-amber-300 hover:text-white transition-all shadow-md"
+              >
+                <span className="flex items-center gap-2">
+                  <Download className="h-4 w-4 text-amber-400 animate-bounce shrink-0" />
+                  <span>Install App / Add to Home Screen</span>
+                </span>
+                <span className="bg-amber-500/30 text-amber-200 text-[10px] font-mono px-2 py-0.5 rounded border border-amber-500/40 font-bold">
+                  PWA
+                </span>
+              </button>
+            </div>
 
             {/* Mobile theme modes */}
             <div className="pt-4 pb-2 border-t border-gray-800 px-3 space-y-2">

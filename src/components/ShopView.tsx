@@ -6,11 +6,11 @@ import { ProductCardSkeleton } from "./SkeletonLoader";
 import ImageWithLoader from "./ImageWithLoader";
 
 interface ShopViewProps {
-  division: "medicals" | "stationery" | "zenora";
+  division: "medicals" | "stationery" | "zenora" | "levra";
   onNavigate: (view: string, params?: Record<string, any>) => void;
   onAddToBag: (product: Product) => void;
   wishlistProductIds?: string[];
-  onToggleWishlist?: (productId: string, productType: 'medicals' | 'stationery' | 'zenora') => void;
+  onToggleWishlist?: (productId: string, productType: 'medicals' | 'stationery' | 'zenora' | 'levra') => void;
 }
 
 export default function ShopView({ 
@@ -24,7 +24,7 @@ export default function ShopView({
   const themeTeal = "teal";
   const isMed = division === "medicals";
   const isStat = division === "stationery";
-  const isZen = division === "zenora";
+  const isZen = division === "zenora" || division === "levra";
   
   const accentColor = isMed 
     ? "text-teal-600" 
@@ -216,7 +216,7 @@ export default function ShopView({
               ? "Nuthan Medicals Shop" 
               : isStat 
                 ? "JA Stationery Shop" 
-                : "Zenora Essentials Shop"}
+                : "Levra Essentials Shop"}
           </h1>
           <p className="text-sm font-light text-white/95">
             {isMed 

@@ -285,11 +285,11 @@ const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: "z1",
-    name: "Zenora Premium Microfiber Cleaning Cloths (6-Pack)",
+    name: "Levra Premium Microfiber Cleaning Cloths (6-Pack)",
     description: "Ultra-soft, highly absorbent microfiber cloths perfect for household dust-busting, surface polishing, and screen cleaning without scratching.",
     price: 349.00,
     category: "Cleaning Supplies",
-    shop: "zenora",
+    shop: "levra",
     stock: 150,
     image: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=600&auto=format&fit=crop",
     tags: ["Microfiber", "Scratch-Free", "Dusting Essentials"],
@@ -298,11 +298,11 @@ const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: "z2",
-    name: "Zenora Eco-Friendly Bamboo Kitchen Cutting Board Set",
+    name: "Levra Eco-Friendly Bamboo Kitchen Cutting Board Set",
     description: "3-piece organic bamboo cutting boards with juice grooves. Highly durable, knife-friendly surfaces for hygienic food prep.",
     price: 899.00,
     category: "Kitchen Essentials",
-    shop: "zenora",
+    shop: "levra",
     stock: 65,
     image: "https://images.unsplash.com/photo-1594385208974-2e75f9d8a84a?w=600&auto=format&fit=crop",
     tags: ["Eco-friendly", "Bamboo", "Kitchen Tools"],
@@ -311,11 +311,11 @@ const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: "z3",
-    name: "Zenora Natural Lavender Air Purifying Gel",
+    name: "Levra Natural Lavender Air Purifying Gel",
     description: "Long-lasting solid gel odor eliminator infused with organic lavender essential oils. Keeps living rooms, kitchens, and closets smelling fresh.",
     price: 180.00,
     category: "Home Essentials",
-    shop: "zenora",
+    shop: "levra",
     stock: 200,
     image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=600&auto=format&fit=crop",
     tags: ["Air Freshener", "Lavender Oil", "Odor Eliminator"],
@@ -324,11 +324,11 @@ const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: "z4",
-    name: "Zenora Ergonomic Memory Foam Seat Cushion",
+    name: "Levra Ergonomic Memory Foam Seat Cushion",
     description: "Premium memory foam seat support contoured to relieve hip and back fatigue. Ideal for office chairs, home workspace, and car seats.",
     price: 1499.00,
     category: "Home Essentials",
-    shop: "zenora",
+    shop: "levra",
     stock: 45,
     image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=600&auto=format&fit=crop",
     tags: ["Memory Foam", "Posture Support", "Ergonomic Comfort"],
@@ -337,11 +337,11 @@ const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: "z5",
-    name: "Zenora Organic Aloe Vera Hydrating Hand Wash",
+    name: "Levra Organic Aloe Vera Hydrating Hand Wash",
     description: "Gentle daily hand cleanser enriched with real aloe vera extracts and chamomile. Keeps hands clean, hydrated, and soft.",
     price: 120.00,
     category: "Personal Daily-use Items",
-    shop: "zenora",
+    shop: "levra",
     stock: 300,
     image: "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=600&auto=format&fit=crop",
     tags: ["Aloe Vera", "Gentle Cleanse", "Moisturizing Wash"],
@@ -983,7 +983,7 @@ export const dbClient = {
   },
 
   // Products Methods
-  getProducts: async (filters: { shop?: string; category?: string; featured?: boolean; search?: string; includeInactive?: boolean }): Promise<Product[]> => {
+  getProducts: async (filters: { shop?: string; category?: string; featured?: boolean; search?: string; includeInactive?: boolean } = {}): Promise<Product[]> => {
     if (isMongo) {
       const mQuery: any = {};
       
