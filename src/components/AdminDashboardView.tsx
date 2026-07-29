@@ -478,7 +478,7 @@ export default function AdminDashboardView({ onNavigate }: { onNavigate?: (page:
   const [formDesc, setFormDesc] = React.useState("");
   const [formPrice, setFormPrice] = React.useState("");
   const [formCategory, setFormCategory] = React.useState("");
-  const [formShop, setFormShop] = React.useState<"medicals" | "stationery">("medicals");
+  const [formShop, setFormShop] = React.useState<"medicals" | "stationery" | "levra">("medicals");
   const [formStock, setFormStock] = React.useState("");
   const [formBrand, setFormBrand] = React.useState("");
   const [formPricePerPiece, setFormPricePerPiece] = React.useState("");
@@ -1213,6 +1213,7 @@ export default function AdminDashboardView({ onNavigate }: { onNavigate?: (page:
                     <option value="">All Divisions</option>
                     <option value="medicals">Nuthan Medicals</option>
                     <option value="stationery">JA Stationery</option>
+                    <option value="levra">Levra Essentials</option>
                   </select>
                 </div>
 
@@ -1256,9 +1257,12 @@ export default function AdminDashboardView({ onNavigate }: { onNavigate?: (page:
 
                           <td className="p-4 capitalize">
                             <span className={`px-2 py-0.5 text-[9px] font-bold rounded-md ${
-                              p.shop === "medicals" ? "bg-teal-50 text-teal-800" : "bg-amber-50 text-amber-800"
+                              p.shop === "medicals" ? "bg-teal-50 text-teal-800" :
+                              p.shop === "stationery" ? "bg-amber-50 text-amber-800" :
+                              p.shop === "levra" ? "bg-indigo-50 text-indigo-800" :
+                              "bg-slate-100 text-slate-800"
                             }`}>
-                              {p.shop}
+                              {p.shop === "medicals" ? "Nuthan Medicals" : p.shop === "stationery" ? "JA Stationery" : p.shop === "levra" ? "Levra Essentials" : p.shop}
                             </span>
                           </td>
 
@@ -2280,9 +2284,10 @@ export default function AdminDashboardView({ onNavigate }: { onNavigate?: (page:
                           onChange={(e) => setOfflineShopDivision(e.target.value as any)}
                           className="w-full px-3 py-1.5 bg-slate-50 border border-gray-200 rounded-lg text-xs font-sans focus:bg-white focus:outline-none cursor-pointer"
                         >
-                          <option value="mixed">Mixed (Both Divisions)</option>
+                          <option value="mixed">Mixed (All Divisions)</option>
                           <option value="medicals">Nuthan Medicals</option>
                           <option value="stationery">JA Stationery</option>
+                          <option value="levra">Levra Essentials</option>
                         </select>
                       </div>
                     </div>
@@ -2357,7 +2362,7 @@ export default function AdminDashboardView({ onNavigate }: { onNavigate?: (page:
                               <div>
                                 <span className="font-semibold text-gray-900">{prod.name}</span>
                                 <span className="ml-2 text-[10px] text-slate-400 uppercase font-mono bg-slate-100 px-1.5 py-0.5 rounded">
-                                  {prod.shop === "medicals" ? "Meds" : "Stat"}
+                                  {prod.shop === "medicals" ? "Meds" : prod.shop === "stationery" ? "Stat" : "Levra"}
                                 </span>
                               </div>
                               <span className="font-mono font-bold text-[#0F6E56]">₹{prod.price.toFixed(2)}</span>
@@ -2760,11 +2765,12 @@ export default function AdminDashboardView({ onNavigate }: { onNavigate?: (page:
                 <label className="text-gray-400 uppercase font-bold tracking-widest block">Store Division</label>
                 <select
                   value={formShop}
-                  onChange={(e) => setFormShop(e.target.value as "medicals" | "stationery")}
+                  onChange={(e) => setFormShop(e.target.value as "medicals" | "stationery" | "levra")}
                   className="w-full bg-slate-50 border border-gray-200 p-2.5 rounded-lg text-sm font-bold text-gray-700 focus:outline-none focus:border-slate-850 cursor-pointer"
                 >
                   <option value="medicals">Nuthan Medicals</option>
                   <option value="stationery">JA Stationery</option>
+                  <option value="levra">Levra Essentials</option>
                 </select>
               </div>
 

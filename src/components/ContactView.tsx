@@ -132,7 +132,7 @@ export default function ContactView() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Card 1: Nuthan Medicals Branch */}
           <div className="bg-card-theme border rounded-2xl p-8 space-y-6 shadow-sm border-t-4 border-t-[#0F9B8E]">
             <div className="flex justify-between items-start">
@@ -197,6 +197,40 @@ export default function ContactView() {
               <div className="flex items-center gap-3">
                 <Clock className="h-4 w-4 text-[#D4820A] shrink-0" />
                 <span>Office timing: 10:00 AM - 08:00 PM (Mon-Sat)</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3: Levra Essentials Branch */}
+          <div className="bg-card-theme border rounded-2xl p-8 space-y-6 shadow-sm border-t-4 border-t-[#4F46E5]">
+            <div className="flex justify-between items-start">
+              <div>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#4F46E5]">Home & Living Sector</span>
+                <h3 className="font-serif text-2xl font-bold text-current mt-1">Levra Essentials Hub</h3>
+              </div>
+              <span className="text-[9px] bg-indigo-500/10 text-indigo-800 border border-indigo-200/40 px-2.5 py-1 rounded font-mono font-bold uppercase">Home Goods</span>
+            </div>
+
+            <p className="text-xs text-gray-500 leading-relaxed font-serif">
+              Delivering eco-friendly cleaning agents, premium cookware, kitchen utilities, and household essentials. Started Nov 15th, 2025.
+            </p>
+
+            <div className="space-y-3.5 text-xs text-gray-500 font-mono">
+              <div className="flex items-start gap-3">
+                <MapPin className="h-4 w-4 text-indigo-600 shrink-0 mt-0.5" />
+                <span className="font-serif text-xs leading-normal">Phase-2, Pno 46 street no 5, Samskruthi Avenues Rd., Dwaraka Nagar, Gajularamaram, Hyderabad, Telangana 500117</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Phone className="h-4 w-4 text-indigo-600 shrink-0" />
+                <span>09666588553 (Living Order-Desk)</span>
+              </div>
+              <div className="flex items-center gap-3 font-medium bg-indigo-500/15 py-1.5 px-3 rounded-lg border border-indigo-500/30 shadow-sm">
+                <Mail className="h-4 w-4 text-indigo-600 shrink-0" />
+                <a href="mailto:team@januzen.in" className="text-gray-900 hover:underline transition-colors font-bold">team@januzen.in</a>
+              </div>
+              <div className="flex items-center gap-3">
+                <Clock className="h-4 w-4 text-indigo-600 shrink-0" />
+                <span>Express dispatch: 09:00 AM - 09:00 PM</span>
               </div>
             </div>
           </div>
@@ -268,6 +302,7 @@ export default function ContactView() {
                 <option value="general">Corporate HQ (General)</option>
                 <option value="medicals">Nuthan Medicals (Pharmacy)</option>
                 <option value="stationery">JA Stationery (Office Supplies)</option>
+                <option value="levra">Levra Essentials (Home & Living)</option>
               </select>
             </div>
 

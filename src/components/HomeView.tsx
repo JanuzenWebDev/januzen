@@ -956,14 +956,14 @@ export default function HomeView({
 
       {/* 🏢 CORPORATE DIRECTORY & GUARANTEES */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-200/60 pt-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 text-left text-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 text-left text-sm">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <JanuzenLogo size={40} className="rounded-lg shadow-sm" />
               <span className="font-serif text-lg font-bold tracking-widest text-[#0D1B2A]">JANUZEN</span>
             </div>
             <p className="text-xs text-gray-500 leading-relaxed font-serif">
-              <strong>Januzen Global LLP</strong>, founded by <strong>Vinuthan Reddy Kongara</strong>, coordinates premier, verified physical standards in clinical healthcare and fine workstation archives.
+              <strong>Januzen Global LLP</strong>, founded by <strong>Vinuthan Reddy Kongara</strong>, coordinates premier, verified physical standards in clinical healthcare, fine workstation archives, and everyday living essentials.
             </p>
             <p className="text-[10px] text-gray-400 font-mono">
               HQ: P.No- P-12, Mahadevpuram, Gajularamaram, Hyderabad, Telangana.
@@ -985,6 +985,15 @@ export default function HomeView({
               <li>📞 Order Desk: 09666588553</li>
               <li>📍 Phase-2, Pno 46 street no 5, Samskruthi Avenues Rd., Dwaraka Nagar, Gajularamaram, Hyderabad, Telangana 500117</li>
               <li>🕒 Estd: Sept 10th, 2024</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-[10px] font-mono font-bold uppercase tracking-widest text-current mb-4">Levra Essentials (Est. Nov 2025)</h4>
+            <ul className="space-y-2.5 text-xs text-gray-500 font-serif">
+              <li>📞 Living Desk: 09666588553</li>
+              <li>📍 Phase-2, Pno 46 street no 5, Samskruthi Avenues Rd., Dwaraka Nagar, Gajularamaram, Hyderabad, Telangana 500117</li>
+              <li>🕒 Estd: Nov 15th, 2025</li>
             </ul>
           </div>
 
