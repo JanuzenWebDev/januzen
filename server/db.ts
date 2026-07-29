@@ -391,7 +391,7 @@ const ProductSchema = new Schema({
   description: { type: String, required: true, maxlength: 2000 },
   price: { type: Number, required: true, min: 0 },
   category: { type: String, required: true, maxlength: 100, index: true },
-  shop: { type: String, enum: ["medicals", "stationery"], required: true, index: true },
+  shop: { type: String, enum: ["medicals", "stationery", "levra", "zenora"], required: true, index: true },
   stock: { type: Number, required: true, min: 0 },
   stockQuantity: { type: Number, min: 0 },
   lowStockThreshold: { type: Number, default: 5, min: 0 },
@@ -441,7 +441,7 @@ const WishlistSchema = new Schema({
   id: { type: String, required: true, unique: true },
   userId: { type: String, required: true, index: true },
   productId: { type: String, required: true, index: true },
-  productType: { type: String, enum: ["medicals", "stationery"], required: true },
+  productType: { type: String, enum: ["medicals", "stationery", "levra", "zenora"], required: true },
   addedAt: { type: String, required: true }
 });
 
@@ -623,7 +623,7 @@ export function validateModelData(modelName: string, data: any) {
     if (!data.category) errors.category = "Category is required";
     else if (data.category.length > 100) errors.category = "Category exceeds 100 characters";
 
-    if (!data.shop || !["medicals", "stationery"].includes(data.shop)) errors.shop = "Shop must be medicals or stationery";
+    if (!data.shop || !["medicals", "stationery", "levra", "zenora"].includes(data.shop)) errors.shop = "Shop must be medicals, stationery, levra, or zenora";
     if (data.stock === undefined || data.stock < 0) errors.stock = "Stock must be a non-negative number";
 
     if (!data.image) errors.image = "Product image is required";

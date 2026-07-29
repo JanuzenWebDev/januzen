@@ -912,7 +912,7 @@ async function startServer() {
         description,
         price: parseFloat(price),
         category,
-        shop: shop as "medicals" | "stationery",
+        shop: shop as "medicals" | "stationery" | "levra" | "zenora",
         stock: calculatedStock,
         image: image || "https://images.unsplash.com/photo-1517842645767-c639042777db?w=600&auto=format&fit=crop",
         tags: Array.isArray(tags) ? tags : (tags ? String(tags).split(",").map(t => t.trim()) : []),
