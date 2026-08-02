@@ -2761,5 +2761,12 @@ async function startServer() {
 
 // Initialise DB sync before booting up Express
 connectAndSeedDB().then(() => {
-  startServer();
+  startServer().catch((err) => {
+    console.error("Failed to start server:", err);
+  });
+}).catch((err) => {
+  console.error("Failed DB connect and seed:", err);
+  startServer().catch((err) => {
+    console.error("Failed to start fallback server:", err);
+  });
 });

@@ -35,8 +35,7 @@ export default function Navbar({ currentView, onNavigate, currentUser, onLogout,
   const desktopSearchRef = React.useRef<HTMLDivElement>(null);
   const mobileSearchRef = React.useRef<HTMLDivElement>(null);
 
-  useClickOutside(desktopSearchRef, () => setIsSearchDropdownOpen(false));
-  useClickOutside(mobileSearchRef, () => setIsSearchDropdownOpen(false));
+  useClickOutside([desktopSearchRef, mobileSearchRef], () => setIsSearchDropdownOpen(false));
 
   // Live Autocomplete Debounced Fetcher
   React.useEffect(() => {
@@ -161,6 +160,7 @@ export default function Navbar({ currentView, onNavigate, currentUser, onLogout,
                 <button
                   key={product.id}
                   type="button"
+                  onMouseDown={(e) => e.preventDefault()}
                   onClick={() => handleSelectSuggestedProduct(product)}
                   className="w-full text-left p-2.5 flex items-center gap-3 hover:bg-slate-800/90 transition-all cursor-pointer group"
                 >
@@ -219,6 +219,7 @@ export default function Navbar({ currentView, onNavigate, currentUser, onLogout,
         <div className="p-2 bg-slate-900 border-t border-slate-800 text-center">
           <button
             type="button"
+            onMouseDown={(e) => e.preventDefault()}
             onClick={() => handleSearchSubmit()}
             className="w-full py-2 px-3 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
           >
@@ -787,8 +788,8 @@ export default function Navbar({ currentView, onNavigate, currentUser, onLogout,
 
         {/* Row 2: Sub-Nav Category Bar */}
         <div className="bg-[#132235] text-white border-t border-[#1E293B] shadow-inner">
-          <div className="max-w-[1600px] mx-auto px-3 sm:px-4 lg:px-6 py-1.5 flex items-center justify-between text-xs font-medium space-x-2 sm:space-x-4 overflow-x-auto whitespace-nowrap scrollbar-none">
-            <div className="flex items-center space-x-1 sm:space-x-2">
+          <div className="max-w-[1600px] mx-auto px-3 sm:px-4 lg:px-6 py-1.5 flex flex-wrap items-center justify-between text-xs font-medium gap-y-1.5 gap-x-2 sm:gap-x-4">
+            <div className="flex flex-wrap items-center gap-1 sm:gap-2">
               
               {/* All / Divisions Dropdown */}
               <div className="relative group shrink-0">
