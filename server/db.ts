@@ -397,6 +397,10 @@ const ProductSchema = new Schema({
   lowStockThreshold: { type: Number, default: 5, min: 0 },
   stockStatus: { type: String, enum: ["in_stock", "low_stock", "out_of_stock"] },
   brand: { type: String, default: "JANUZEN" },
+  sku: { type: String, index: true, sparse: true },
+  subcategory: { type: String, default: "" },
+  discountPrice: { type: Number, default: 0 },
+  unit: { type: String, default: "pc" },
   pricePerPiece: { type: Number, default: 0 },
   piecesPerUnit: { type: Number, default: 1 },
   totalUnitsAvailable: { type: Number, default: 0 },
@@ -1082,6 +1086,120 @@ export const dbClient = {
       saveLocalDB(db);
       return db.products[idx];
     }
+  },
+
+  bulkUpsertProducts: async (products: Partial<Product>[]): Promise<{ createdCount: number; updatedCount: number; totalProcessed: number; errors: Array<{ row: number; error: string }> }> => {
+    let createdCount = 0;
+    let updatedCount = 0;
+    const errors: Array<{ row: number; error: string }> = [];
+
+    const prepareProduct = (p: Partial<Product>, index: number): Product => {
+      const id = p.id || (p.sku ? "p_sku_" + String(p.sku).replace(/[^a-zA-Z0-9_-]/g, "_") : "p_" + Date.now() + "_" + index + "_" + Math.floor(Math.random() * 1000));
+      const stock = p.stock !== undefined && !isNaN(Number(p.stock)) ? Math.max(0, Number(p.stock)) : 0;
+      const lowStockThreshold = p.lowStockThreshold !== undefined ? Number(p.lowStockThreshold) : 5;
+      const stockStatus = stock === 0 ? "out_of_stock" : (stock <= lowStockThreshold ? "low_stock" : "in_stock");
+      
+      return {
+        id,
+        sku: p.sku ? String(p.sku).trim() : undefined,
+        name: p.name ? String(p.name).trim() : "Unnamed Product",
+        description: p.description ? String(p.description).trim() : "",
+        price: p.price !== undefined ? Number(p.price) : 0,
+        discountPrice: p.discountPrice !== undefined ? Number(p.discountPrice) : 0,
+        category: p.category ? String(p.category).trim() : "General",
+        subcategory: p.subcategory ? String(p.subcategory).trim() : "",
+        shop: (p.shop as any) || "medicals",
+        stock,
+        stockQuantity: stock,
+        lowStockThreshold,
+        stockStatus,
+        brand: p.brand ? String(p.brand).trim() : "JANUZEN",
+        unit: p.unit ? String(p.unit).trim() : "pc",
+        pricePerPiece: p.pricePerPiece !== undefined ? Number(p.pricePerPiece) : (p.price !== undefined ? Number(p.price) : 0),
+        piecesPerUnit: p.piecesPerUnit !== undefined ? Number(p.piecesPerUnit) : 1,
+        totalUnitsAvailable: p.totalUnitsAvailable !== undefined ? Number(p.totalUnitsAvailable) : stock,
+        image: p.image ? String(p.image).trim() : "https://images.unsplash.com/photo-1517842645767-c639042777db?w=600&auto=format&fit=crop",
+        tags: Array.isArray(p.tags) ? p.tags : (p.tags ? String(p.tags).split(",").map(t => t.trim()) : []),
+        featured: !!p.featured,
+        isActive: p.isActive !== undefined ? !!p.isActive : true
+      };
+    };
+
+    if (isMongo) {
+      const skus = products.map(p => p.sku).filter(Boolean) as string[];
+      const ids = products.map(p => p.id).filter(Boolean) as string[];
+
+      const filterConditions: any[] = [];
+      if (skus.length > 0) filterConditions.push({ sku: { $in: skus } });
+      if (ids.length > 0) filterConditions.push({ id: { $in: ids } });
+
+      let existingSkuSet = new Set<string>();
+      let existingIdSet = new Set<string>();
+
+      if (filterConditions.length > 0) {
+        const existingDocs = await MongoProduct.find({ $or: filterConditions }).select("sku id").lean();
+        existingSkuSet = new Set(existingDocs.map((d: any) => d.sku).filter(Boolean));
+        existingIdSet = new Set(existingDocs.map((d: any) => d.id));
+      }
+
+      const bulkOps: any[] = [];
+
+      products.forEach((pRaw, idx) => {
+        const p = prepareProduct(pRaw, idx);
+        const isUpdate = (p.sku && existingSkuSet.has(p.sku)) || existingIdSet.has(p.id);
+        
+        if (isUpdate) {
+          updatedCount++;
+        } else {
+          createdCount++;
+        }
+
+        const filterQuery: any = p.sku ? { sku: p.sku } : { id: p.id };
+
+        bulkOps.push({
+          updateOne: {
+            filter: filterQuery,
+            update: { $set: p },
+            upsert: true
+          }
+        });
+      });
+
+      if (bulkOps.length > 0) {
+        await MongoProduct.bulkWrite(bulkOps, { ordered: false });
+      }
+    } else {
+      const db = loadLocalDB();
+      
+      products.forEach((pRaw, idx) => {
+        const p = prepareProduct(pRaw, idx);
+        let existingIdx = -1;
+        
+        if (p.sku) {
+          existingIdx = db.products.findIndex(existing => existing.sku && existing.sku.trim().toLowerCase() === p.sku!.toLowerCase());
+        }
+        if (existingIdx === -1 && p.id) {
+          existingIdx = db.products.findIndex(existing => existing.id === p.id);
+        }
+
+        if (existingIdx > -1) {
+          db.products[existingIdx] = { ...db.products[existingIdx], ...p };
+          updatedCount++;
+        } else {
+          db.products.push(p);
+          createdCount++;
+        }
+      });
+
+      saveLocalDB(db);
+    }
+
+    return {
+      createdCount,
+      updatedCount,
+      totalProcessed: products.length,
+      errors
+    };
   },
 
   // Orders Methods

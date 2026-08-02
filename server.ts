@@ -997,6 +997,37 @@ async function startServer() {
     }
   });
 
+  // Admin Bulk Import Products
+  app.post("/api/admin/products/bulk-import", authenticateAdmin, async (req, res) => {
+    try {
+      const { products } = req.body;
+      if (!products || !Array.isArray(products) || products.length === 0) {
+        return res.status(400).json({ error: "Products array is required and cannot be empty." });
+      }
+
+      const result = await dbClient.bulkUpsertProducts(products);
+
+      return res.json({
+        message: `Successfully processed ${result.totalProcessed} products`,
+        ...result
+      });
+    } catch (e: any) {
+      console.error("Error in bulk import API:", e);
+      return res.status(500).json({ error: "Failed to process bulk product import: " + (e.message || String(e)) });
+    }
+  });
+
+  // Admin Bulk Export Products
+  app.get("/api/admin/products/export", authenticateAdmin, async (req, res) => {
+    try {
+      const allProducts = await dbClient.getProducts({ includeInactive: true });
+      return res.json(allProducts);
+    } catch (e: any) {
+      console.error("Error exporting products:", e);
+      return res.status(500).json({ error: "Failed to export products: " + (e.message || String(e)) });
+    }
+  });
+
   // --- ORDERS ---
 
   // Order Placement

@@ -4,11 +4,12 @@ import { safeLocalStorage as localStorage, safeSessionStorage as sessionStorage 
 import { 
   TrendingUp, Activity, BookOpen, AlertCircle, Eye, Trash2, Check, CreditCard, 
   Settings, Users, ShoppingBag, MessageSquare, PlusCircle, Search, Edit2, RotateCcw,
-  Mail, Phone, MapPin, X, Loader2, Upload
+  Mail, Phone, MapPin, X, Loader2, Upload, FileSpreadsheet
 } from "lucide-react";
 import { Product, Order, Message, User } from "../types";
 import PushAdvertisementsPanel from "./PushAdvertisementsPanel";
 import DeliveryTeamPanel from "./DeliveryTeamPanel";
+import { BulkProductImportModal } from "./BulkProductImportModal";
 
 export default function AdminDashboardView({ onNavigate }: { onNavigate?: (page: string, params?: any) => void }) {
   const [activeTab, setActiveTab] = React.useState<"stats" | "products" | "orders" | "messages" | "users" | "coupons" | "marquee" | "storage" | "settings" | "offline-bill" | "advertisement" | "delivery-team">("stats");
@@ -451,6 +452,7 @@ export default function AdminDashboardView({ onNavigate }: { onNavigate?: (page:
   // Product Inventory Search & Filter state
   const [prodSearch, setProdSearch] = React.useState("");
   const [prodShopFilter, setProdShopFilter] = React.useState("");
+  const [showBulkModal, setShowBulkModal] = React.useState(false);
 
   // Product CRUD Form Modal State
   const formModalRef = React.useRef<HTMLDivElement>(null);
@@ -1217,13 +1219,23 @@ export default function AdminDashboardView({ onNavigate }: { onNavigate?: (page:
                   </select>
                 </div>
 
-                <button
-                  onClick={handleOpenAddForm}
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider py-2.5 px-4 rounded-lg flex items-center gap-1.5 shadow"
-                >
-                  <PlusCircle className="h-4 w-4" />
-                  Add New Product
-                </button>
+                <div className="flex gap-2 items-center flex-wrap">
+                  <button
+                    onClick={() => setShowBulkModal(true)}
+                    className="bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs uppercase tracking-wider py-2.5 px-4 rounded-lg flex items-center gap-1.5 shadow cursor-pointer transition-colors"
+                  >
+                    <FileSpreadsheet className="h-4 w-4 text-emerald-400" />
+                    Bulk Import / Export
+                  </button>
+
+                  <button
+                    onClick={handleOpenAddForm}
+                    className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider py-2.5 px-4 rounded-lg flex items-center gap-1.5 shadow cursor-pointer transition-colors"
+                  >
+                    <PlusCircle className="h-4 w-4" />
+                    Add New Product
+                  </button>
+                </div>
               </div>
 
               {/* Data Table */}
@@ -2945,6 +2957,16 @@ export default function AdminDashboardView({ onNavigate }: { onNavigate?: (page:
           </div>
         </div>
       )}
+
+      {/* Bulk Product Import & Export Modal */}
+      <BulkProductImportModal
+        isOpen={showBulkModal}
+        onClose={() => setShowBulkModal(false)}
+        userToken={token || ""}
+        onSuccessRefresh={() => {
+          if (token) fetchAllData(token, true);
+        }}
+      />
     </div>
   );
 }

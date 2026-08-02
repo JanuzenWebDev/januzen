@@ -35,6 +35,10 @@ export interface Product {
   pricePerPiece?: number;
   piecesPerUnit?: number;
   totalUnitsAvailable?: number;
+  sku?: string;
+  subcategory?: string;
+  discountPrice?: number;
+  unit?: string;
 }
 
 export interface OrderItem {
