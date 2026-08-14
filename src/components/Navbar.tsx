@@ -4,7 +4,7 @@ import { gsap } from "gsap";
 import { safeLocalStorage as localStorage, safeSessionStorage as sessionStorage } from "../utils/storage";
 import { ShoppingBag, User, LogOut, ShieldAlert, Activity, BookOpen, Menu, X, Settings, Palette, Bell, Download, Smartphone, ChevronDown, Search, MapPin } from "lucide-react";
 import { User as UserType, Product } from "../types";
-import { JanuzenLogo, NuthanMedicalsLogo, JaStationeryLogo, LevraLogo, ZenoraLogo } from "./Logos";
+import { JanuzenLogo, JaStationeryLogo, LevraLogo, ZenoraLogo } from "./Logos";
 import { subscribeToPush } from "../lib/push";
 import { NotificationDrawer } from "./NotificationDrawer";
 
@@ -105,10 +105,10 @@ export default function Navbar({ currentView, onNavigate, currentUser, onLogout,
       // Intelligently redirect to division of top matched product if available
       if (searchResults.length > 0 && searchResults[0].shop) {
         targetView = searchResults[0].shop;
-      } else if (["medicals", "stationery", "levra"].includes(currentView)) {
+      } else if (["stationery", "levra"].includes(currentView)) {
         targetView = currentView;
       } else {
-        targetView = "medicals";
+        targetView = "stationery";
       }
     }
 
@@ -131,7 +131,7 @@ export default function Navbar({ currentView, onNavigate, currentUser, onLogout,
             <Search className="w-3.5 h-3.5 text-amber-400 shrink-0" />
             <span className="truncate">
               {searchCategory === "all" ? "Matching & Nearest Products" : `Searching in ${
-                searchCategory === "medicals" ? "Nuthan Medicals" : searchCategory === "stationery" ? "JA Stationery" : "Levra Essentials"
+                searchCategory === "stationery" ? "JA Stationery" : "Levra Essentials"
               }`}
             </span>
           </div>
@@ -147,12 +147,9 @@ export default function Navbar({ currentView, onNavigate, currentUser, onLogout,
         <div className="max-h-80 overflow-y-auto divide-y divide-slate-800/60 custom-scrollbar">
           {searchResults.length > 0 ? (
             searchResults.map((product) => {
-              const isMed = product.shop === "medicals";
               const isStat = product.shop === "stationery";
-              const shopName = isMed ? "Nuthan Medicals" : isStat ? "JA Stationery" : "Levra Essentials";
-              const shopBadgeClass = isMed
-                ? "bg-teal-500/15 text-teal-300 border-teal-500/30"
-                : isStat
+              const shopName = isStat ? "JA Stationery" : "Levra Essentials";
+              const shopBadgeClass = isStat
                 ? "bg-amber-500/15 text-amber-300 border-amber-500/30"
                 : "bg-indigo-500/15 text-indigo-300 border-indigo-500/30";
 
@@ -482,7 +479,6 @@ export default function Navbar({ currentView, onNavigate, currentUser, onLogout,
 
   const navItems = [
     { label: "Home", view: "home" },
-    { label: "Nuthan Medicals", view: "medicals" },
     { label: "JA Stationery", view: "stationery" },
     { label: "Levra", view: "levra" },
     { label: "About", view: "about" },
@@ -565,7 +561,6 @@ export default function Navbar({ currentView, onNavigate, currentUser, onLogout,
                   className="bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold px-2.5 py-2.5 border-r border-slate-300 outline-none cursor-pointer transition-colors font-sans"
                 >
                   <option value="all">All Divisions</option>
-                  <option value="medicals">Nuthan Medicals</option>
                   <option value="stationery">JA Stationery</option>
                   <option value="levra">Levra Essentials</option>
                 </select>
@@ -578,7 +573,7 @@ export default function Navbar({ currentView, onNavigate, currentUser, onLogout,
                   onFocus={() => {
                     if (searchQuery.trim().length > 0) setIsSearchDropdownOpen(true);
                   }}
-                  placeholder="Search prescription medicines, executive stationery, household essentials..."
+                  placeholder="Search executive stationery, luxury diaries, household essentials..."
                   className="flex-1 px-3 py-2 text-xs text-slate-900 bg-white placeholder:text-slate-400 outline-none font-medium"
                 />
 
@@ -810,19 +805,6 @@ export default function Navbar({ currentView, onNavigate, currentUser, onLogout,
                     </div>
 
                     <button
-                      onClick={() => onNavigate("medicals")}
-                      className={`w-full text-left p-2 rounded-xl flex items-center gap-3 hover:bg-[#1E293B] transition-colors cursor-pointer ${
-                        currentView === "medicals" ? "bg-teal-950/50 border border-teal-500/30" : ""
-                      }`}
-                    >
-                      <NuthanMedicalsLogo size={24} />
-                      <div>
-                        <div className="text-xs font-bold text-white">Nuthan Medicals</div>
-                        <div className="text-[10px] text-gray-400">Medicines & Equipment</div>
-                      </div>
-                    </button>
-
-                    <button
                       onClick={() => onNavigate("stationery")}
                       className={`w-full text-left p-2 rounded-xl flex items-center gap-3 hover:bg-[#1E293B] transition-colors cursor-pointer ${
                         currentView === "stationery" ? "bg-amber-950/50 border border-amber-500/30" : ""
@@ -859,16 +841,6 @@ export default function Navbar({ currentView, onNavigate, currentUser, onLogout,
                 }`}
               >
                 Home
-              </button>
-
-              <button
-                onClick={() => onNavigate("medicals")}
-                className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
-                  currentView === "medicals" ? "text-teal-300 font-bold bg-teal-950/60 border border-teal-500/30" : "text-gray-300 hover:text-teal-300 hover:bg-[#1E293B]/60"
-                }`}
-              >
-                <NuthanMedicalsLogo size={16} />
-                <span>Nuthan Medicals</span>
               </button>
 
               <button
@@ -962,25 +934,6 @@ export default function Navbar({ currentView, onNavigate, currentUser, onLogout,
                 <span>JANUZEN Divisions</span>
                 <span className="text-[9px] text-gray-500">Select Sector</span>
               </div>
-
-              {/* Nuthan Medicals */}
-              <button
-                onClick={() => {
-                  onNavigate("medicals");
-                  setMobileMenuOpen(false);
-                }}
-                className={`w-full text-left p-2 rounded-lg flex items-center gap-3 transition-colors cursor-pointer ${
-                  currentView === "medicals" ? "bg-teal-950/60 border border-teal-500/40 text-teal-300 font-bold" : "text-gray-300 hover:bg-slate-800/80"
-                }`}
-              >
-                <div className="h-8 w-8 rounded-lg bg-teal-500/10 border border-teal-500/20 flex items-center justify-center shrink-0">
-                  <NuthanMedicalsLogo size={20} />
-                </div>
-                <div>
-                  <div className="text-xs font-bold">Nuthan Medicals</div>
-                  <div className="text-[10px] text-gray-400">Healthcare & Medicines</div>
-                </div>
-              </button>
 
               {/* JA Stationery */}
               <button

@@ -5,7 +5,7 @@ import {
   Activity, BookOpen, Quote, HelpCircle, Star, ArrowUpRight, Heart, Share2, Check
 } from "lucide-react";
 import { Product } from "../types";
-import { JanuzenLogo, NuthanMedicalsLogo, JaStationeryLogo, LevraLogo, ZenoraLogo } from "./Logos";
+import { JanuzenLogo, JaStationeryLogo, LevraLogo, ZenoraLogo } from "./Logos";
 import { ProductCardSkeleton, TestimonialSkeleton } from "./SkeletonLoader";
 import ImageWithLoader from "./ImageWithLoader";
 
@@ -14,7 +14,7 @@ interface HomeViewProps {
   featuredProducts: Product[];
   onAddToBag: (product: Product) => void;
   wishlistProductIds?: string[];
-  onToggleWishlist?: (productId: string, productType: 'medicals' | 'stationery' | 'zenora' | 'levra') => void;
+  onToggleWishlist?: (productId: string, productType: 'stationery' | 'zenora' | 'levra') => void;
 }
 
 export default function HomeView({ 
@@ -39,11 +39,11 @@ export default function HomeView({
       color: "bg-indigo-50 dark:bg-indigo-950/45 border-indigo-200 dark:border-indigo-900/60 text-indigo-800 dark:text-indigo-300"
     },
     {
-      text: "Nuthan Medicals continues to be our premier source for WHO-GMP medical diagnostics. The transparency and rapid dispatch keep our clinical teams operating at highest standards.",
+      text: "JA Stationery's archival-grade executive journals and fountain pens have transformed our boardroom note-taking. The craftsmanship and paper tactile feel are exceptional.",
       author: "Neel Akash",
-      role: "Clinical Quality Lead",
+      role: "Executive Director",
       avatar: "NA",
-      color: "bg-teal-50 dark:bg-teal-950/45 border-teal-200 dark:border-teal-900/60 text-teal-800 dark:text-teal-300"
+      color: "bg-amber-50 dark:bg-amber-950/45 border-amber-200 dark:border-amber-900/60 text-amber-800 dark:text-amber-300"
     },
     {
       text: "I am deeply impressed by JA Stationery's premium drawing books and customized organizers. Their attention to paper quality and high-GSM feel is unmatched for professional design work.",
@@ -60,7 +60,7 @@ export default function HomeView({
       color: "bg-purple-50 dark:bg-purple-950/45 border-purple-200 dark:border-purple-900/60 text-purple-800 dark:text-purple-300"
     },
     {
-      text: "Consolidated invoicing across Nuthan Medicals and JA Stationery simplifies our multi-department bookkeeping. One verified platform for diagnostics and workstation files is a marvel.",
+      text: "Consolidated ordering across JA Stationery and Levra Essentials simplifies our multi-department bookkeeping. One verified platform for workstation files and home utilities is a marvel.",
       author: "Akhil",
       role: "Corporate Finance Controller",
       avatar: "AK",
@@ -74,18 +74,18 @@ export default function HomeView({
       color: "bg-yellow-50 dark:bg-yellow-950/45 border-yellow-200 dark:border-yellow-900/60 text-yellow-800 dark:text-yellow-300"
     },
     {
-      text: "Levra's kitchen and daily household items have outstanding durability. Combining this new sector with healthcare formulations makes Januzen Global our true single-source enterprise partner.",
+      text: "Levra's kitchen and daily household items have outstanding durability. Combining fine writing supplies with living essentials makes Januzen Global our true single-source enterprise partner.",
       author: "Deepak",
       role: "Facilities Management Head",
       avatar: "DP",
       color: "bg-sky-50 dark:bg-sky-950/45 border-sky-200 dark:border-sky-900/60 text-sky-800 dark:text-sky-300"
     },
     {
-      text: "As a medical practitioner, I rely heavily on rapid diagnostics. Nuthan Medicals' sterile trauma kits and diagnostics devices are of uncompromising international quality.",
+      text: "Ordering supplies in bulk through JA Stationery and Levra is smooth and reliable. Pristine packaging and prompt customer service.",
       author: "Abhishek",
-      role: "Chief Medical Director",
+      role: "Operations Lead",
       avatar: "AB",
-      color: "bg-emerald-50 dark:bg-emerald-950/45 border-emerald-200 dark:border-emerald-900/60 text-emerald-800 dark:text-emerald-300"
+      color: "bg-indigo-50 dark:bg-indigo-950/45 border-indigo-200 dark:border-indigo-900/60 text-indigo-800 dark:text-indigo-300"
     }
   ];
 
@@ -374,32 +374,25 @@ export default function HomeView({
           <div className="lg:w-7/12 space-y-8 text-left">
             <div className="gsap-hero-badge inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 text-amber-200 rounded-full text-[10px] font-mono tracking-[0.2em] uppercase">
               <Sparkles className="h-3 w-3 text-amber-400 animate-pulse" />
-              Trusted Healthcare & Enterprise Essentials
+              Fine Stationery & Living Essentials
             </div>
             
             <h1 className="gsap-hero-title font-serif text-5xl sm:text-6xl lg:text-7xl font-extralight leading-[1.08] tracking-tight">
-              Building Trust Through <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-amber-300 to-amber-500 font-bold">Healthcare & Essential Services</span>
+              Curating Quality For <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-indigo-400 font-bold">Workstation & Everyday Living</span>
             </h1>
             
             <p className="gsap-hero-desc text-gray-300 text-lg sm:text-xl font-light leading-relaxed max-w-2xl font-serif">
-              JANUZEN Global LLP is the parent organization behind trusted healthcare and stationery brands. Through Nuthan Medicals and JA Stationery, we deliver certified medical supplies, quality stationery products, and dependable enterprise solutions with integrity, precision, and long-term reliability.
+              JANUZEN Global LLP is the parent organization behind trusted stationery and household brands. Through JA Stationery and Levra Essentials, we deliver quality stationery products, executive journals, home utilities, and dependable enterprise solutions with integrity, precision, and long-term reliability.
             </p>
 
             <div className="gsap-hero-btns flex flex-wrap gap-4 pt-4">
               <button
-                onClick={() => onNavigate("medicals")}
-                className="group flex items-center gap-2.5 bg-[#0F9B8E] hover:bg-[#0c7f74] text-white font-mono font-bold uppercase tracking-wider px-7 py-4 rounded-lg shadow-lg hover:shadow-[#0F9B8E]/20 transition-all text-xs cursor-pointer"
-              >
-                Explore Nuthan Medicals
-                <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1.5 transition-transform" />
-              </button>
-              <button
                 onClick={() => onNavigate("stationery")}
-                className="group flex items-center gap-2.5 bg-transparent border border-white/20 hover:border-amber-400 hover:text-amber-400 text-white font-mono font-bold uppercase tracking-wider px-7 py-4 rounded-lg transition-all text-xs cursor-pointer"
+                className="group flex items-center gap-2.5 bg-[#D4820A] hover:bg-[#b56e07] text-white font-mono font-bold uppercase tracking-wider px-7 py-4 rounded-lg shadow-lg hover:shadow-amber-500/20 transition-all text-xs cursor-pointer"
               >
                 Explore JA Stationery
-                <ArrowUpRight className="h-4 w-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1.5 transition-transform" />
               </button>
               <button
                 onClick={() => onNavigate("levra")}
@@ -411,14 +404,14 @@ export default function HomeView({
             </div>
 
             <p className="text-xs text-gray-400 font-light tracking-wide italic pt-2">
-              Serving communities with quality, transparency, and professional excellence.
+              Serving workspaces and households with quality, transparency, and professional excellence.
             </p>
           </div>
 
           {/* Hero Graphic Frame (Interactive Brand Hub Preview) */}
           <div className="gsap-hero-frame lg:w-5/12 flex justify-center relative w-full max-w-lg lg:max-w-none">
             {/* Ambient Colorful Neon Glow Behind the Asset */}
-            <div className="w-full h-full bg-gradient-to-tr from-[#0F9B8E]/40 via-amber-500/20 to-[#D4820A]/40 rounded-2xl absolute -rotate-2 scale-102 blur-2xl opacity-50 shadow-2xl"></div>
+            <div className="w-full h-full bg-gradient-to-tr from-amber-500/30 via-indigo-500/20 to-[#D4820A]/40 rounded-2xl absolute -rotate-2 scale-102 blur-2xl opacity-50 shadow-2xl"></div>
             
             <div className="w-full bg-[#111625]/90 border-2 border-amber-500/25 rounded-2xl p-6 md:p-8 shadow-2xl relative z-10 flex flex-col justify-between space-y-6 backdrop-blur-md overflow-hidden group">
               
@@ -441,34 +434,17 @@ export default function HomeView({
                     <span className="text-[9px] font-mono text-amber-300 uppercase tracking-widest font-black">Curated Collection</span>
                     <h4 className="text-white text-sm font-serif font-semibold">Januzen Master Suite</h4>
                   </div>
-                  <span className="text-[9px] text-[#2DD4BF] font-mono bg-teal-950/80 border border-teal-500/30 px-2 py-0.5 rounded-full uppercase">
+                  <span className="text-[9px] text-amber-300 font-mono bg-amber-950/80 border border-amber-500/30 px-2 py-0.5 rounded-full uppercase">
                     Authorized
                   </span>
                 </div>
               </div>
 
               <div className="space-y-4">
-                {/* Division 1 Line */}
-                <div 
-                  onClick={() => onNavigate("medicals")}
-                  className="flex items-center gap-4 p-3 rounded-xl bg-white/5 border border-white/5 hover:border-teal-500/30 hover:bg-teal-950/20 transition-all group cursor-pointer"
-                >
-                  <div className="h-10 w-10 text-teal-400 bg-teal-950/40 border border-teal-500/10 rounded-lg flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                    <NuthanMedicalsLogo size={28} />
-                  </div>
-                  <div className="flex-grow">
-                    <h4 className="text-sm font-bold text-white flex items-center gap-1.5 group-hover:text-teal-300">
-                      Nuthan Medicals
-                      <ArrowRight className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                    </h4>
-                    <p className="text-[11px] text-gray-300 mt-0.5 leading-relaxed font-serif">WHO-GMP prescription medicines & diagnostic devices.</p>
-                  </div>
-                </div>
-
-                {/* Division 2 Line */}
+                {/* Division 1 Line: JA Stationery */}
                 <div 
                   onClick={() => onNavigate("stationery")}
-                  className="flex items-center gap-4 p-3 rounded-xl bg-white/5 border border-white/5 hover:border-amber-500/30 hover:bg-amber-950/20 transition-all group cursor-pointer"
+                  className="flex items-center gap-4 p-3.5 rounded-xl bg-white/5 border border-white/5 hover:border-amber-500/30 hover:bg-amber-950/20 transition-all group cursor-pointer"
                 >
                   <div className="h-10 w-10 text-amber-400 bg-amber-950/40 border border-amber-500/10 rounded-lg flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                     <JaStationeryLogo size={28} />
@@ -482,10 +458,10 @@ export default function HomeView({
                   </div>
                 </div>
 
-                {/* Division 3 Line */}
+                {/* Division 2 Line: Levra Essentials */}
                 <div 
                   onClick={() => onNavigate("levra")}
-                  className="flex items-center gap-4 p-3 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 hover:bg-indigo-950/20 transition-all group cursor-pointer"
+                  className="flex items-center gap-4 p-3.5 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 hover:bg-indigo-950/20 transition-all group cursor-pointer"
                 >
                   <div className="h-10 w-10 text-indigo-400 bg-indigo-950/40 border border-indigo-500/10 rounded-lg flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                     <LevraLogo size={28} />
@@ -501,9 +477,9 @@ export default function HomeView({
               </div>
 
               <div className="border-t border-white/5 pt-4 flex justify-between items-center text-[9px] font-mono text-gray-400 tracking-wide">
-                <span>ESTABLISHED 2005</span>
+                <span>ESTABLISHED 2024</span>
                 <span className="text-amber-500">* TRUSTED PORTAL *</span>
-                <span>TELANGANA, IN</span>
+                <span>HYDERABAD, TELANGANA</span>
               </div>
             </div>
           </div>
@@ -515,10 +491,10 @@ export default function HomeView({
         <div className="bg-white/90 backdrop-blur-md border border-gray-200/80 rounded-2xl shadow-xl py-8 px-6 md:px-12">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4 lg:divide-x divide-gray-200/80">
             {[
-              { val: "21+", desc: "Years Audit Integrity", color: "text-teal-600" },
-              { val: "10k+", desc: "Vetted Corporate Orders", color: "text-amber-600" },
-              { val: "3", desc: "Specialist Corporate Divisions", color: "text-teal-600" },
-              { val: "100%", desc: "Authorized Distribute Guarantee", color: "text-amber-600" },
+              { val: "21+", desc: "Years Audit Integrity", color: "text-amber-600" },
+              { val: "10k+", desc: "Vetted Corporate Orders", color: "text-indigo-600" },
+              { val: "2", desc: "Specialist Divisions", color: "text-amber-600" },
+              { val: "100%", desc: "Authorized Distribute Guarantee", color: "text-indigo-600" },
             ].map((stat, i) => (
               <div 
                 key={i} 
@@ -534,68 +510,21 @@ export default function HomeView({
         </div>
       </section>
 
-      {/* 🏥 TRIPLE PILLARS: DIVISION SELECTORS */}
+      {/* 🏛️ SPECIALIST HOUSES: DIVISION SELECTORS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
           <span className="text-xs font-mono font-bold tracking-[0.25em] text-[#D4820A] block uppercase">Exclusive Operations</span>
           <h2 className="font-serif text-4xl sm:text-5xl font-light text-current leading-tight">
-            Our Three <span className="italic font-normal">Specialist Houses</span>
+            Our Specialist <span className="italic font-normal">Houses</span>
           </h2>
           <div className="w-12 h-[2px] bg-amber-500 mx-auto"></div>
           <p className="text-gray-500 text-sm max-w-lg mx-auto">
-            Governing healthcare distribution, fine-bound workstation inventories, and quality home essentials with strict standards of original delivery.
+            Governing fine-bound workstation inventories and quality home living essentials with strict standards of original delivery.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Card 1: Nuthan Medicals */}
-          <div 
-            className="gsap-division-card bg-card-theme border-2 border-teal-500/20 rounded-2xl overflow-hidden shadow-md transition-all duration-300 flex flex-col justify-between group relative"
-            onMouseEnter={handleCard1Enter}
-            onMouseLeave={handleCard1Leave}
-          >
-            <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-teal-400 to-[#0F9B8E]"></div>
-            
-            <div className="p-8 space-y-6">
-              <div className="flex justify-between items-start">
-                <div className="gsap-division-logo inline-flex h-16 w-16 text-teal-600 bg-teal-50 rounded-2xl items-center justify-center p-2.5 border border-teal-100 shadow-sm transition-all duration-300">
-                  <NuthanMedicalsLogo size={56} />
-                </div>
-                <span className="gsap-division-tag text-[9px] font-mono font-bold uppercase tracking-widest text-[#0F9B8E] bg-[#0F9B8E]/10 border border-[#0F9B8E]/20 px-2.5 py-1 rounded-full">
-                  WHO-GMP Vetted
-                </span>
-              </div>
-              
-              <div className="space-y-2">
-                <span className="text-[10px] font-mono tracking-widest text-teal-600 uppercase font-black block">Pharmacological Dispensary</span>
-                <h3 className="font-serif text-2xl font-regular tracking-tight text-slate-900 transition-colors">Nuthan Medicals</h3>
-              </div>
-
-              <p className="text-gray-500 text-sm leading-relaxed font-serif">
-                A highly trusted distributor delivering prescription formulations, active OTC remedies, hospital-certified diagnostic monitoring devices, and sterile trauma kits. Audited to meet critical healthcare compliance rules.
-              </p>
-
-              <div className="flex flex-wrap gap-2 pt-2">
-                {["Formulations", "Diagnostic Monitors", "WHO Certified", "Trauma kits"].map((tag) => (
-                  <span key={tag} className="text-[10px] font-sans font-bold border border-teal-100 bg-teal-50/50 text-teal-800 px-3 py-1 rounded-full">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-            
-            <div className="px-8 pb-8">
-              <button
-                onClick={() => onNavigate("medicals")}
-                className="w-full py-4 px-6 bg-[#0F9B8E] hover:bg-[#0c7f74] text-white font-mono text-xs font-bold uppercase tracking-wider rounded-lg flex items-center justify-center gap-3 transition-colors cursor-pointer shadow-md hover:shadow-teal-500/25 active:scale-98"
-              >
-                Enter Medicals Division
-                <ArrowRight className="gsap-division-arrow h-4 w-4" />
-              </button>
-            </div>
-          </div>
-
-          {/* Card 2: JA Stationery */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {/* Card 1: JA Stationery */}
           <div 
             className="gsap-division-card bg-card-theme border-2 border-amber-500/20 rounded-2xl overflow-hidden shadow-md transition-all duration-300 flex flex-col justify-between group relative"
             onMouseEnter={handleCard2Enter}
@@ -642,7 +571,7 @@ export default function HomeView({
             </div>
           </div>
 
-          {/* Card 3: Levra */}
+          {/* Card 2: Levra */}
           <div 
             className="gsap-division-card bg-card-theme border-2 border-indigo-500/20 rounded-2xl overflow-hidden shadow-md transition-all duration-300 flex flex-col justify-between group relative"
             onMouseEnter={handleCard3Enter}
@@ -710,8 +639,8 @@ export default function HomeView({
             ))
           ) : (
             featuredProducts.slice(0, 4).map((product) => {
-              const shopBadge = product.shop === "medicals" ? "bg-teal-50 text-teal-800 border-teal-100" : "bg-amber-50 text-amber-800 border-amber-100";
-              const btnTheme = product.shop === "medicals" ? "bg-[#0F9B8E] hover:bg-[#0c7f74]" : "bg-[#D4820A] hover:bg-[#b56e07]";
+              const shopBadge = product.shop === "stationery" ? "bg-amber-50 text-amber-800 border-amber-100" : "bg-indigo-50 text-indigo-800 border-indigo-100";
+              const btnTheme = product.shop === "stationery" ? "bg-[#D4820A] hover:bg-[#b56e07]" : "bg-[#6366F1] hover:bg-[#4F46E5]";
               
               const isWishlisted = wishlistProductIds.includes(product.id);
               const isOutOfStock = (product.stockQuantity ?? product.stock) === 0;
@@ -744,7 +673,7 @@ export default function HomeView({
                       containerClassName="gsap-product-img w-full h-56"
                     />
                     <span className={`gsap-product-badge absolute top-4 left-4 text-[9px] font-mono font-bold tracking-wider uppercase px-3 py-1 rounded-full border shadow-sm ${shopBadge}`}>
-                      {product.shop === "medicals" ? "💊 Nuthan Med" : "🖋️ JA Stationery"}
+                      {product.shop === "stationery" ? "🖋️ JA Stationery" : "✨ Levra"}
                     </span>
 
                     {/* Integrated Heart Toggle & Share controls over image card */}
@@ -956,27 +885,18 @@ export default function HomeView({
 
       {/* 🏢 CORPORATE DIRECTORY & GUARANTEES */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-200/60 pt-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 text-left text-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-left text-sm">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <JanuzenLogo size={40} className="rounded-lg shadow-sm" />
               <span className="font-serif text-lg font-bold tracking-widest text-[#0D1B2A]">JANUZEN</span>
             </div>
             <p className="text-xs text-gray-500 leading-relaxed font-serif">
-              <strong>Januzen Global LLP</strong>, founded by <strong>Vinuthan Reddy Kongara</strong>, coordinates premier, verified physical standards in clinical healthcare, fine workstation archives, and everyday living essentials.
+              <strong>Januzen Global LLP</strong>, founded by <strong>Vinuthan Reddy Kongara</strong>, coordinates premier, verified physical standards in fine workstation archives and everyday living essentials.
             </p>
             <p className="text-[10px] text-gray-400 font-mono">
-              HQ: P.No- P-12, Mahadevpuram, Gajularamaram, Hyderabad, Telangana.
+              HQ: P.No- P-12, Mahadevpuram, Gajularamaram, Hyderabad, Telangana 500055.
             </p>
-          </div>
-
-          <div>
-            <h4 className="text-[10px] font-mono font-bold uppercase tracking-widest text-current mb-4">Nuthan Medicals (Est. June 2005)</h4>
-            <ul className="space-y-2.5 text-xs text-gray-500 font-serif">
-              <li>📞 Helpline: 09666588553</li>
-              <li>📍 Phase-2, Pno 46 street no 5, Samskruthi Avenues Rd., Dwaraka Nagar, Gajularamaram, Hyderabad, Telangana 500117</li>
-              <li>🕒 Estd: June 6th, 2005</li>
-            </ul>
           </div>
 
           <div>
@@ -989,11 +909,11 @@ export default function HomeView({
           </div>
 
           <div>
-            <h4 className="text-[10px] font-mono font-bold uppercase tracking-widest text-current mb-4">Levra Essentials (Est. Nov 2025)</h4>
+            <h4 className="text-[10px] font-mono font-bold uppercase tracking-widest text-current mb-4">Levra Essentials (Est. March 2025)</h4>
             <ul className="space-y-2.5 text-xs text-gray-500 font-serif">
               <li>📞 Living Desk: 09666588553</li>
-              <li>📍 Phase-2, Pno 46 street no 5, Samskruthi Avenues Rd., Dwaraka Nagar, Gajularamaram, Hyderabad, Telangana 500117</li>
-              <li>🕒 Estd: Nov 15th, 2025</li>
+              <li>📍 P.No- P-12, Mahadevpuram, Gajularamaram, Hyderabad, Telangana 500055</li>
+              <li>🕒 Estd: March 2nd, 2025</li>
             </ul>
           </div>
 
@@ -1002,7 +922,7 @@ export default function HomeView({
             <div className="space-y-3 font-mono text-[10px] text-gray-500">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-4 w-4 text-emerald-500" />
-                <span>WHO-GMP Audit Licensed</span>
+                <span>Quality Audit Licensed</span>
               </div>
               <div className="flex items-center gap-2">
                 <Truck className="h-4 w-4 text-amber-500" />

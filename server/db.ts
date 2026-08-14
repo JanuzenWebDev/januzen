@@ -50,136 +50,6 @@ const INITIAL_ADMIN_PASS_HASH = "$2a$12$e8y.Kx/dG7U1K4R8PzKq1eXqW4O1K.gY8K1v7E1x
 // Default Seed Data
 const INITIAL_PRODUCTS: Product[] = [
   {
-    id: "m1",
-    name: "Amoxicillin 500mg Capsules",
-    description: "Broad-spectrum antibiotic used to treat bacterial infections. Prescription required. Store below 25°C in a dry place.",
-    price: 450.00,
-    category: "Prescriptions",
-    shop: "medicals",
-    stock: 45,
-    image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop",
-    tags: ["Antibiotic", "Infection", "Essential Handhelds"],
-    featured: true,
-    isActive: true
-  },
-  {
-    id: "m2",
-    name: "Metformin 850mg Tablets",
-    description: "Oral anti-diabetic drug indicated for type-2 diabetes mellitus management. Aids in blood sugar regulation.",
-    price: 240.00,
-    category: "Prescriptions",
-    shop: "medicals",
-    stock: 60,
-    image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop",
-    tags: ["Diabetes", "Sugar Control", "Maintenance"],
-    featured: false,
-    isActive: true
-  },
-  {
-    id: "m3",
-    name: "Ibuprofen 400mg Rapid Relief",
-    description: "Anti-inflammatory and pain reliever. Effective against headaches, muscle pain, fever, and dental discomfort.",
-    price: 95.00,
-    category: "Over-the-Counter",
-    shop: "medicals",
-    stock: 120,
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&auto=format&fit=crop",
-    tags: ["Fast Pain Relief", "Fever reducer", "Anti-inflammatory"],
-    featured: true,
-    isActive: true
-  },
-  {
-    id: "m4",
-    name: "Cetirizine 10mg Allergy Shield",
-    description: "24-hour non-drowsy antihistamine for quick relief from running nose, sneezing, itchy eyes, and seasonal pollen allergies.",
-    price: 120.00,
-    category: "Over-the-Counter",
-    shop: "medicals",
-    stock: 80,
-    image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop",
-    tags: ["Histamine Blocker", "Allergies", "Seasonal Relief"],
-    featured: false,
-    isActive: true
-  },
-  {
-    id: "m5",
-    name: "Digital Upper Arm Blood Pressure Monitor",
-    description: "Fully automatic, clinical accuracy blood pressure monitor with dynamic cuff size 22-42cm, heart rate tracker, and 90 records memory.",
-    price: 2999.00,
-    category: "Medical Devices",
-    shop: "medicals",
-    stock: 15,
-    image: "https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=600&auto=format&fit=crop",
-    tags: ["Cardio Health", "Home Monitor", "Accurate Diagnostics"],
-    featured: true,
-    isActive: true
-  },
-  {
-    id: "m6",
-    name: "Fingertip Pulse Oximeter",
-    description: "Dual-color OLED reader checking oxygen saturation level (SpO2) and pulse rate quickly and accurately. Perfect for home wellness care.",
-    price: 1499.00,
-    category: "Medical Devices",
-    shop: "medicals",
-    stock: 30,
-    image: "https://images.unsplash.com/photo-1628151015664-7a7442749ec3?w=600&auto=format&fit=crop",
-    tags: ["Oxygen Tracker", "Compact Health", "Pulse Reader"],
-    featured: false,
-    isActive: true
-  },
-  {
-    id: "m7",
-    name: "Premium Multi-size Adhesive Bandages Pack",
-    description: "Assorted flexible, waterproof fabric bandages with sterile non-stick wound pads to protect cuts and minor abrasions.",
-    price: 60.00,
-    category: "First Aid",
-    shop: "medicals",
-    stock: 140,
-    image: "https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=600&auto=format&fit=crop",
-    tags: ["Waterproof Protection", "Sterile Cuts", "Wound Care"],
-    featured: false,
-    isActive: true
-  },
-  {
-    id: "m8",
-    name: "Complete Emergency First Aid Kit",
-    description: "Compact nylon zip container featuring 120 pieces premium sterile and antiseptic components for minor household and driving emergency management.",
-    price: 1650.00,
-    category: "First Aid",
-    shop: "medicals",
-    stock: 22,
-    image: "https://images.unsplash.com/photo-1607613009820-a2debfb1f7d5?w=600&auto=format&fit=crop",
-    tags: ["Survival", "Home Emergency", "Comprehensive Kit"],
-    featured: true,
-    isActive: true
-  },
-  {
-    id: "m9",
-    name: "Multivitamin A-Z Daily Immune Boost",
-    description: "Premium micronutrient support formulated with Vitamin C, D3, Zinc, Ginseng, and iron to improve persistent cell energy and robust daily immunity.",
-    price: 720.00,
-    category: "Wellness & Vitamins",
-    shop: "medicals",
-    stock: 95,
-    image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=600&auto=format&fit=crop",
-    tags: ["Immunity Booster", "Zinc Minerals", "Daily Wellness"],
-    featured: true,
-    isActive: true
-  },
-  {
-    id: "m10",
-    name: "High Pure Omega-3 Fish Oil 1000mg",
-    description: "Triple-strength softgels packed with EPA and DHA values supporting natural cardiovascular rhythms, mental clarity, and visual precision.",
-    price: 890.00,
-    category: "Wellness & Vitamins",
-    shop: "medicals",
-    stock: 65,
-    image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=600&auto=format&fit=crop",
-    tags: ["Heart Helper", "Brain Booster", "Omega Fatty Acids"],
-    featured: false,
-    isActive: true
-  },
-  {
     id: "s1",
     name: "Double A A4 Copy Paper 80gsm",
     description: "Premium smooth copy sheets engineered for high-speed printer execution. Smear-resistant, high brightness level, superb opacity.",
@@ -391,7 +261,7 @@ const ProductSchema = new Schema({
   description: { type: String, required: true, maxlength: 2000 },
   price: { type: Number, required: true, min: 0 },
   category: { type: String, required: true, maxlength: 100, index: true },
-  shop: { type: String, enum: ["medicals", "stationery", "levra", "zenora"], required: true, index: true },
+  shop: { type: String, enum: ["stationery", "levra", "zenora"], required: true, index: true },
   stock: { type: Number, required: true, min: 0 },
   stockQuantity: { type: Number, min: 0 },
   lowStockThreshold: { type: Number, default: 5, min: 0 },
@@ -445,7 +315,7 @@ const WishlistSchema = new Schema({
   id: { type: String, required: true, unique: true },
   userId: { type: String, required: true, index: true },
   productId: { type: String, required: true, index: true },
-  productType: { type: String, enum: ["medicals", "stationery", "levra", "zenora"], required: true },
+  productType: { type: String, enum: ["stationery", "levra", "zenora"], required: true },
   addedAt: { type: String, required: true }
 });
 
@@ -627,7 +497,7 @@ export function validateModelData(modelName: string, data: any) {
     if (!data.category) errors.category = "Category is required";
     else if (data.category.length > 100) errors.category = "Category exceeds 100 characters";
 
-    if (!data.shop || !["medicals", "stationery", "levra", "zenora"].includes(data.shop)) errors.shop = "Shop must be medicals, stationery, levra, or zenora";
+    if (!data.shop || !["stationery", "levra", "zenora"].includes(data.shop)) errors.shop = "Shop must be stationery, levra, or zenora";
     if (data.stock === undefined || data.stock < 0) errors.stock = "Stock must be a non-negative number";
 
     if (!data.image) errors.image = "Product image is required";

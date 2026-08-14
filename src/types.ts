@@ -21,7 +21,7 @@ export interface Product {
   description: string;
   price: number;
   category: string;
-  shop: 'medicals' | 'stationery' | 'zenora' | 'levra';
+  shop: 'stationery' | 'zenora' | 'levra' | 'medicals';
   stock: number;
   stockQuantity?: number;
   lowStockThreshold?: number;
@@ -47,7 +47,7 @@ export interface OrderItem {
   price: number;
   quantity: number;
   image: string;
-  shop: 'medicals' | 'stationery' | 'zenora' | 'levra';
+  shop: 'stationery' | 'zenora' | 'levra' | 'medicals';
   selectedOption?: ProductOption;
 }
 

@@ -44,7 +44,7 @@ export default function AboutView() {
     {
       year: "2025",
       title: "Expansion to Levra Essentials",
-      desc: "Introducing Levra Essentials on November 15th, 2025 to supply eco-friendly household agents, cookware, and daily living utilities."
+      desc: "Introducing Levra Essentials on March 2nd, 2025 to supply eco-friendly household agents, cookware, and daily living utilities."
     }
   ];
 
@@ -107,7 +107,7 @@ export default function AboutView() {
           
           <div className="space-y-4 text-sm text-gray-500 leading-relaxed font-serif">
             <p>
-              <strong>Januzen Global LLP</strong>, founded by <strong>Vinuthan Reddy Kongara</strong>, operates as a parent company with three specialized divisions that touch everyday lives. <strong>Nuthan Medicals</strong> (established June 6th, 2005) serves the clinical market by providing authenticated prescriptions and diagnostic tools. Simultaneously, <strong>JA Stationery</strong> (established September 10th, 2024) powers offices and classrooms through premium paper, diaries, and writing tools. Complementing these is <strong>Levra Essentials</strong> (established November 15th, 2025), delivering high-quality household cleaning agents, cookware, and living utilities.
+              <strong>Januzen Global LLP</strong>, founded by <strong>Vinuthan Reddy Kongara</strong>, operates as a parent company with three specialized divisions that touch everyday lives. <strong>Nuthan Medicals</strong> (established June 6th, 2005) serves the clinical market by providing authenticated prescriptions and diagnostic tools. Simultaneously, <strong>JA Stationery</strong> (established September 10th, 2024) powers offices and classrooms through premium paper, diaries, and writing tools. Complementing these is <strong>Levra Essentials</strong> (established March 2nd, 2025), delivering high-quality household cleaning agents, cookware, and living utilities.
             </p>
             <p>
               All three divisions operate securely out of our central facility, consolidating healthcare logistics, workspace inventories, and home goods under one efficient administrative portal for hassle-free invoicing and genuine stock telemetry.

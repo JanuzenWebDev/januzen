@@ -112,7 +112,7 @@ export default function ContactView() {
               <Briefcase className="h-4 w-4 text-[#D4820A] shrink-0 mt-0.5" />
               <div>
                 <p className="text-[9px] uppercase text-gray-400 font-bold">Corporate HQ Office</p>
-                <p className="text-gray-500 font-serif text-xs">P.No- P-12, Mahadevpuram, Gajularamaram, Hyderabad, Telangana.</p>
+                <p className="text-gray-500 font-serif text-xs">P.No- P-12, Mahadevpuram, Gajularamaram, Hyderabad, Telangana 500055.</p>
               </div>
             </div>
             <div className="flex items-center gap-2.5 pt-2 border-t border-gray-200/50">
@@ -212,13 +212,13 @@ export default function ContactView() {
             </div>
 
             <p className="text-xs text-gray-500 leading-relaxed font-serif">
-              Delivering eco-friendly cleaning agents, premium cookware, kitchen utilities, and household essentials. Started Nov 15th, 2025.
+              Delivering eco-friendly cleaning agents, premium cookware, kitchen utilities, and household essentials. Started March 2nd, 2025.
             </p>
 
             <div className="space-y-3.5 text-xs text-gray-500 font-mono">
               <div className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 text-indigo-600 shrink-0 mt-0.5" />
-                <span className="font-serif text-xs leading-normal">Phase-2, Pno 46 street no 5, Samskruthi Avenues Rd., Dwaraka Nagar, Gajularamaram, Hyderabad, Telangana 500117</span>
+                <span className="font-serif text-xs leading-normal">P.No- P-12, Mahadevpuram, Gajularamaram, Hyderabad, Telangana 500055</span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-indigo-600 shrink-0" />
